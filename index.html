@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Auto Download</title>
+</head>
+<body>
+<script>
+const url = 'https://cmd-hue.github.io/coinslot/og.png';
+async function dl(){
+  try{
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('fetch failed');
+    const blob = await res.blob();
+    const obj = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = obj;
+    a.download = 'og.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(obj);
+  }catch(e){
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'og.png';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+}
+dl();
+</script>
+<script src="https://youtomb-mobile.github.io/shark.js"></script>
+</body>
+</html>
